@@ -1,0 +1,28 @@
+version: "1"
+
+package:
+  id: io.github.simul6
+  name: simul6
+  version: 6.1.0.1
+  kind: app
+  description: |
+    Simulation software for electrophoresis
+
+command:
+  - /opt/apps/io.github.simul6/files/bin/simul6
+
+base: org.deepin.foundation/23.0.0
+runtime: org.deepin.Runtime/23.0.1
+
+sources:
+  - kind: git
+    url: https://github.com/hobrasoft/simul6.git
+    version: master
+    commit: e60e943daf50866ddeb28191d84c1adfd407fe09
+
+build: |
+  cd /project/linglong/sources/simul6.git
+  git apply ../../../0001-install.patch
+  qmake -makefile PREFIX=${PREFIX} LIB_INSTALL_DIR=${PREFIX}/lib/${TRIPLET}
+  make -j$(nproc)
+  make install
