@@ -1,0 +1,32 @@
+From 51421acaf71609199f57ff2519675df551987169 Mon Sep 17 00:00:00 2001
+From: wjyrich <1071633242@qq.com>
+Date: Fri, 16 Aug 2024 19:49:16 +0800
+Subject: [PATCH] install
+
+---
+ src/src.pro | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
+diff --git a/src/src.pro b/src/src.pro
+index 7e2157b..1434b08 100644
+--- a/src/src.pro
++++ b/src/src.pro
+@@ -198,5 +198,13 @@ RESOURCES += \
+ 
+ # Default rules for deployment.
+ qnx: target.path = /tmp/$${TARGET}/bin
+-else: unix:!android: target.path = /opt/$${TARGET}/bin
++else: unix:!android: #target.path = /opt/$${TARGET}/bin
+ !isEmpty(target.path): INSTALLS += target
++
++target.path = $$PREFIX/bin
++desktop.files = ../Simul6.desktop
++desktop.path = $$PREFIX/share/applications/
++icons.path = $$PREFIX/share/icons
++icons.files = ../images/appicon.svg
++
++INSTALLS += target desktop icons
+\ No newline at end of file
+-- 
+2.43.4
+
